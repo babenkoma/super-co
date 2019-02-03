@@ -8,11 +8,11 @@
 
 
 /**
- * Run function
+ * Super Co function
  * @param generator - generator function or generator
  * @returns {Promise}
  */
-function run (generator) {
+function superCo (generator) {
 	function isGeneratorFunction (obj) {
 		return obj && obj.constructor && (obj.constructor.name === 'GeneratorFunction' || obj.constructor.displayName === 'GeneratorFunction');
 	}
@@ -65,7 +65,7 @@ function run (generator) {
 
 			if (!item.done) {
 				if (isGeneratorFunction(item.value) || isGenerator(item.value)) {
-					run(item.value)
+					superCo(item.value)
 					.then(next)
 					.catch(reject);
 				} else if (isPromise(item.value)) {
@@ -94,6 +94,5 @@ function run (generator) {
 
 /**
  * Exports
- * @type {run}
  */
-module.exports = run;
+module.exports = superCo;

@@ -1,5 +1,5 @@
 {
-	"name": "run",
+	"name": "super-co",
 	"version": "1.0.0",
 	"author": "Marina Babenko",
 	"license": "MIT",
@@ -7,15 +7,16 @@
 	"keywords": [
 		"wrap function",
 		"generator",
-		"asynchronous code"
+		"asynchronous code",
+		"super-co"
 	],
 	"scripts": {
 		"test": "node test/index.js"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/babenkoma/run.git"
+		"url": "git+https://github.com/babenkoma/super-co.git"
 	},
-	"homepage": "https://github.com/babenkoma/run#readme",
+	"homepage": "https://github.com/babenkoma/super-co#readme",
 	"main": "index.js"
 }

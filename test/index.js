@@ -1,4 +1,4 @@
-const run = require('../index');
+const co = require('../index');
 
 /**
  * Synchronous data example. It may be number, string, object, etc
@@ -61,9 +61,9 @@ let generatorExample = generatorFuncExample(5);
 
 
 /**
- * Use run function with generator function
+ * Use Super Co function with generator function
  */
-run(function* () {
+co(function* () {
 	console.log('Start');
 
 	let data1 = yield syncData;
@@ -81,7 +81,7 @@ run(function* () {
 	let data5 = yield generatorExample;
 	console.log('data5:', data5);
 
-	let data6 = yield run('Non generator data');
+	let data6 = yield co('Non generator data');
 	console.log('data6:', data6);
 
 	return 'End';
