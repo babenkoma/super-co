@@ -1,0 +1,21 @@
+{
+	"name": "run",
+	"version": "1.0.0",
+	"author": "Marina Babenko",
+	"license": "MIT",
+	"description": "Wrap function for generators for easy writing asynchronous code",
+	"keywords": [
+		"wrap function",
+		"generator",
+		"asynchronous code"
+	],
+	"scripts": {
+		"test": "node test/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/babenkoma/run.git"
+	},
+	"homepage": "https://github.com/babenkoma/run#readme",
+	"main": "index.js"
+}
