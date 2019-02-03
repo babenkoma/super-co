@@ -3,8 +3,8 @@ Wrap function for generators for easy writing asynchronous code.
 This function is similar to [co](https://github.com/tj/co), but has differences:
 - smaller size;
 - write on ES6;
-- support thunk width callbacks width multiple argument;
-- makes it easier to use asynchronous functions
+- support multiple argument in thunk callbacks;
+- makes it easier to use
 
 ## Install
 ```
