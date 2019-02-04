@@ -6,6 +6,61 @@
  * @author Marina Babenko <babenkoma@gmail.com>
  */
 
+/**
+ * Checks obj is it generator function
+ * @param obj
+ * @returns {*|boolean}
+ */
+function isGeneratorFunction (obj) {
+	return obj && obj.constructor && (obj.constructor.name === 'GeneratorFunction' || obj.constructor.displayName === 'GeneratorFunction');
+}
+
+/**
+ * Checks obj is it generator
+ * @param obj
+ * @returns {*|boolean}
+ */
+function isGenerator (obj) {
+	return obj && typeof obj.next === 'function' && typeof obj.throw === 'function';
+}
+
+/**
+ * Checks obj is it promise
+ * @param obj
+ * @returns {*|boolean}
+ */
+function isPromise (obj) {
+	return obj && typeof obj.then === 'function' && typeof obj.catch === 'function';
+}
+
+/**
+ * Checks obj is it function
+ * @param obj
+ * @returns {boolean}
+ */
+function isFunction (obj) {
+	return typeof obj === 'function';
+}
+
+/**
+ * Transform arguments of function into array or value
+ * @param args
+ * @returns {*}
+ */
+function getArguments (args) {
+	let result = null;
+	if (args.length > 1) {
+		result = [];
+		for(let i = 0; i < args.length; i++) {
+			result.push(args[i]);
+		}
+	} else if (args.length === 1) {
+		result = args[0];
+	}
+
+	return result;
+}
+
 
 /**
  * Super Co function
@@ -13,36 +68,6 @@
  * @returns {Promise}
  */
 function superCo (generator) {
-	function isGeneratorFunction (obj) {
-		return obj && obj.constructor && (obj.constructor.name === 'GeneratorFunction' || obj.constructor.displayName === 'GeneratorFunction');
-	}
-
-	function isGenerator (obj) {
-		return obj && typeof obj.next === 'function' && typeof obj.throw === 'function';
-	}
-
-	function isPromise (obj) {
-		return obj && typeof obj.then === 'function' && typeof obj.catch === 'function';
-	}
-
-	function isFunction (obj) {
-		return typeof obj === 'function';
-	}
-
-	function getArguments (args) {
-		let result = null;
-		if (args.length > 1) {
-			result = [];
-			for(let i = 0; i < args.length; i++) {
-				result.push(args[i]);
-			}
-		} else if (args.length === 1) {
-			result = args[0];
-		}
-
-		return result;
-	}
-
 	return new Promise((resolve, reject) => {
 		let gen = null;
 		if (isGeneratorFunction(generator)) {
