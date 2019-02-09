@@ -84,6 +84,10 @@ co(function* () {
 	let data6 = yield co('Non generator data');
 	console.log('data6:', data6);
 
+	yield co.forEach([1, 2, 3], (item) => {
+		console.log('data7:', item);
+	});
+
 	return 'End';
 }).then((result) => {
 	console.log('then:', result);

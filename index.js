@@ -118,6 +118,35 @@ function superCo (generator) {
 }
 
 /**
+ * Async for function
+ * @param arr - array of items
+ * @param func - function with each item
+ */
+superCo.forEach = (arr = [], func) => {
+	let run = (i = 0) => {
+		return superCo(function* () {
+			if (arr.length >= i + 1) {
+				yield new Promise((resolve, reject) => {
+					try {
+						func(arr[i]);
+						resolve();
+					} catch (error) {
+						reject(error);
+					}
+				});
+				yield run(i + 1);
+			}
+		});
+	};
+
+	if (Array.isArray(arr)) {
+		return run();
+	} else {
+		return new Promise();
+	}
+};
+
+/**
  * Exports
  */
 module.exports = superCo;

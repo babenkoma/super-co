@@ -12,7 +12,7 @@ npm i super-co
 ```
 
 ## Using
-```
+```JS
 const co = require('super-co');
  
 co(function* () {
@@ -22,9 +22,22 @@ co(function* () {
    let data4 = yield generatorFuncExample(1);
    let data5 = yield generatorExample;
    let data6 = yield co('Non generator data');
-   ...
+   yield co.forEach([1, 2, 3], (item) => {
+      console.log('data7:', item);
+   });
+   // ...
 });
 ```
+
+## Argument of co function
+generator function or generator
+
+## Methods
+### forEach(arr, func) - asynchronous loop which return Promise
+
+- arr - array of elements
+- func - function with an element that as its attribute
+
 
 ## Detail
 See [tests](https://github.com/babenkoma/super-co/blob/master/test/index.js)
