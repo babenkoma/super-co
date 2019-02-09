@@ -114,17 +114,22 @@ function superCo (generator) {
 }
 
 /**
- * asynchronous loop which return Promise
+ * Asynchronous loop which return Promise
  * @param arr - array of elements
- * @param func - function with an element that as its attribute
+ * @param func - function with an element that as its attribute, which return Promise
  */
 superCo.forEach = (arr = [], func) => {
-	if (Array.isArray(arr)) {
-		return async () => {
-			for (const item of arr) {
-				await func(item);
+	let run = (i = 0) => {
+		return superCo(function* () {
+			if (arr.length >= i + 1) {
+				yield func(arr[i]);
+				yield run(i + 1);
 			}
-		};
+		});
+	};
+
+	if (Array.isArray(arr)) {
+		return run();
 	} else {
 		return new Promise();
 	}

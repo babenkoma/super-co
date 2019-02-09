@@ -1,6 +1,6 @@
 {
 	"name": "super-co",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"author": "Marina Babenko",
 	"license": "MIT",
 	"description": "Wrap function for generators for easy writing asynchronous code",
