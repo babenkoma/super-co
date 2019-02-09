@@ -90,13 +90,9 @@ function superCo (generator) {
 
 			if (!item.done) {
 				if (isGeneratorFunction(item.value) || isGenerator(item.value)) {
-					superCo(item.value)
-					.then(next)
-					.catch(reject);
+					superCo(item.value).then(next).catch(reject);
 				} else if (isPromise(item.value)) {
-					item.value
-					.then(next)
-					.catch(reject);
+					item.value.then(next).catch(reject);
 				} else if (isFunction(item.value)) {
 					try {
 						item.value(next);
@@ -123,24 +119,12 @@ function superCo (generator) {
  * @param func - function with an element that as its attribute
  */
 superCo.forEach = (arr = [], func) => {
-	let run = (i = 0) => {
-		return superCo(function* () {
-			if (arr.length >= i + 1) {
-				yield new Promise((resolve, reject) => {
-					try {
-						func(arr[i]);
-						resolve();
-					} catch (error) {
-						reject(error);
-					}
-				});
-				yield run(i + 1);
-			}
-		});
-	};
-
 	if (Array.isArray(arr)) {
-		return run();
+		return async () => {
+			for (const item of arr) {
+				await func(item);
+			}
+		};
 	} else {
 		return new Promise();
 	}
