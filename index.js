@@ -118,9 +118,9 @@ function superCo (generator) {
 }
 
 /**
- * Async for function
- * @param arr - array of items
- * @param func - function with each item
+ * asynchronous loop which return Promise
+ * @param arr - array of elements
+ * @param func - function with an element that as its attribute
  */
 superCo.forEach = (arr = [], func) => {
 	let run = (i = 0) => {
